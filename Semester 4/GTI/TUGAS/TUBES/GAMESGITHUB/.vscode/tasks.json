@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "Compile Game Brankas Multi-file",
+      "command": "C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\g++.exe",
+      "args": [
+        "-g",
+        "${workspaceFolder}\\main.cpp",
+        "${workspaceFolder}\\globals.cpp",
+        "${workspaceFolder}\\helpers.cpp",
+        "${workspaceFolder}\\input.cpp",
+        "${workspaceFolder}\\lighting.cpp",
+        "${workspaceFolder}\\puzzle.cpp",
+        "${workspaceFolder}\\scene.cpp",
+        "${workspaceFolder}\\imageloader.cpp",
+        "-o",
+        "${workspaceFolder}\\game_brankas.exe",
+        "-I",
+        "C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\include",
+        "-I",
+        "C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\x86_64-w64-mingw32\\include",
+        "-L",
+        "C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\lib",
+        "-lglut32",
+        "-lglu32",
+        "-lopengl32",
+        "-lm",
+        "-m32"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Kompilasi 32-bit Multi-file Terbuka Lancar"
+    }
+  ]
+}
