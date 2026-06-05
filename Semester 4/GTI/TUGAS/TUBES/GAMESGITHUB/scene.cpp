@@ -232,7 +232,7 @@ static void drawVaultDoor()
 
  
 // RENDER UTAMA BRANKAS + 7 PUZZLEs
-void KotakKayu()
+void brankas()
 {
     // --- Pastikan dinding & brankas tidak memancarkan cahaya sendiri ---
     GLfloat mat_no_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};

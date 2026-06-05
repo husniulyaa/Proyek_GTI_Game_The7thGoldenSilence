@@ -3,6 +3,6 @@
 
  
 // RENDER UTAMA BRANKAS + 7 PUZZLE + OVERLAY
-void KotakKayu();
+void brankas();
 
 #endif // SCENE_H
