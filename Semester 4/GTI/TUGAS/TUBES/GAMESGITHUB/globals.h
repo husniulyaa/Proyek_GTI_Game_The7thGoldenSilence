@@ -13,6 +13,7 @@ extern float x, y, z;
 extern float lx, ly, lz;
 extern float xCurr, zCurr;
 extern int   deltaMove, h, w;
+extern int   cameraPOV;
 
 // VARIABEL STATUS GAME
 enum GameState {
@@ -26,12 +27,12 @@ extern GameState gameState;
 extern int timeLeft;
 
 // VARIABEL STATUS PUZZLE (7 PUZZLE)
-extern bool puzzleDone[8]; // index 1-7
+extern bool puzzleDone[8];
 
 // activePuzzle: 0=belum pilih, 1..7=puzzle aktif
 extern int activePuzzle;
 
-// Input tiap puzzle (index 1-7)
+// Input tiap puzzle
 extern char puzzleInput[8][16];
 extern int  puzzleLen[8];
 
@@ -61,4 +62,4 @@ extern bool manualBookClickReady;
 extern char feedbackMsg[64];
 extern int  feedbackTimer;
 
-#endif // GLOBALS_H
+#endif

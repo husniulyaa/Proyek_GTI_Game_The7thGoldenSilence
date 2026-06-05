@@ -6,8 +6,10 @@
 #endif
 #include <GL/glut.h>
 
-
 // CALLBACK KAMERA
+void applyCameraView();
+const char* getPOVName();
+void resetGame();
 void orientMe(float ang);
 void moveMeFlat(int i);
 
@@ -25,4 +27,4 @@ void mouseLook(int mx, int my);
 void pressKey(int key, int mx, int my);
 void releaseKey(int key, int mx, int my);
 
-#endif // INPUT_H
+#endif
