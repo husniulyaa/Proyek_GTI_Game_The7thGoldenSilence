@@ -10,15 +10,13 @@
 
  
 // CEK SEMUA PUZZLE SELESAI
-bool cekSemuaModulSelesai()
-{
+bool cekSemuaModulSelesai(){
     for (int i = 1; i <= 7; i++)
         if (!puzzleDone[i]) return false;
     return true;
 }
 
-void checkAllPuzzleSolved()
-{
+void checkAllPuzzleSolved(){
     if (!cekSemuaModulSelesai()) return;
     isGameWon      = true;
     lightR = 0.60f; lightG = 0.95f; lightB = 0.65f;
@@ -26,8 +24,7 @@ void checkAllPuzzleSolved()
 
  
 // BUKA MANUAL BOOK
-void openManualBook()
-{
+void openManualBook(){
 #ifdef _WIN32
     ShellExecuteA(NULL, "open",
         "https://www.notion.so/CONFIDENTIAL-NO-DUPLICATE-3381c0a7f09e800786edca457cb8a9a6",
@@ -39,8 +36,7 @@ void openManualBook()
 
  
 // STATUS BAR 7 PUZZLE DI ATAS PINTU
-void drawPuzzleStatusBar()
-{
+void drawPuzzleStatusBar(){
     float startX = -2.85f;
     float py = 5.8f, pz = 6.15f;
     float pw = 0.72f, ph = 0.5f;

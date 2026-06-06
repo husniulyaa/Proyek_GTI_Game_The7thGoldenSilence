@@ -11,23 +11,20 @@
 #include <string.h>
 #include <stdio.h>
 
-static void beginTexture(GLuint texId)
-{
+static void beginTexture(GLuint texId){
     if (texId == 0) return;
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texId);
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 }
 
-static void endSteelTexture()
-{
+static void endSteelTexture(){
     glBindTexture(GL_TEXTURE_2D, 0);
     glDisable(GL_TEXTURE_2D);
 }
 
 static void drawPanelBorder(float halfW, float halfH, float z,
-                            float r, float g, float b)
-{
+                            float r, float g, float b){
     glDisable(GL_LIGHTING);
     glColor3f(r, g, b);
     glLineWidth(3.0f);
@@ -46,8 +43,7 @@ static void drawPanelBorder(float halfW, float halfH, float z,
     glEnable(GL_LIGHTING);
 }
 
-static void drawModulePanelBase(float r, float g, float b)
-{
+static void drawModulePanelBase(float r, float g, float b){
     glColor3f(r, g, b);
     glBegin(GL_QUADS);
         glVertex3f(-1.1f,-1.1f,0.0f);
@@ -58,8 +54,7 @@ static void drawModulePanelBase(float r, float g, float b)
     drawPanelBorder(1.1f, 1.1f, 0.012f, 0.635f, 0.482f, 0.361f);
 }
 
-static void updateManualBookClickArea()
-{
+static void updateManualBookClickArea(){
     GLdouble model[16], proj[16];
     GLint viewport[4];
     GLdouble sx, sy, sz;
@@ -99,8 +94,7 @@ static void drawTexturedQuad(float x1, float y1, float z1,
                              float x2, float y2, float z2,
                              float x3, float y3, float z3,
                              float x4, float y4, float z4,
-                             float repeatS, float repeatT)
-{
+                             float repeatS, float repeatT){
     glBegin(GL_QUADS);
         glTexCoord2f(0.0f,    0.0f);    glVertex3f(x1, y1, z1);
         glTexCoord2f(repeatS, 0.0f);    glVertex3f(x2, y2, z2);
@@ -109,8 +103,7 @@ static void drawTexturedQuad(float x1, float y1, float z1,
     glEnd();
 }
 
-static void drawVaultRoomShell()
-{
+static void drawVaultRoomShell(){
     beginTexture(wallTextureID);
     glColor3f(0.863f, 0.843f, 0.788f);
 
@@ -140,8 +133,7 @@ static void drawVaultRoomShell()
     endSteelTexture();
 }
 
-static void drawVaultShadow()
-{
+static void drawVaultShadow(){
     glPushMatrix();
         glDisable(GL_LIGHTING);
         glEnable(GL_BLEND);
@@ -170,8 +162,7 @@ static void drawVaultShadow()
     glPopMatrix();
 }
 
-static void drawGoldBars()
-{
+static void drawGoldBars(){
     GLfloat goldSpec[] = {0.95f, 0.78f, 0.24f, 1.0f};
     GLfloat goldShine[] = {70.0f};
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, goldSpec);
@@ -200,8 +191,7 @@ static void drawGoldBars()
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, defaultShine);
 }
 
-static void drawVaultDoor()
-{
+static void drawVaultDoor(){
     if (cekSemuaModulSelesai() && doorAngle < 96.0f)
         doorAngle += 0.55f;
     if (!cekSemuaModulSelesai() && doorAngle > 0.0f)
@@ -232,8 +222,7 @@ static void drawVaultDoor()
 
  
 // RENDER UTAMA BRANKAS + 7 PUZZLEs
-void brankas()
-{
+void brankas(){
     // --- Pastikan dinding & brankas tidak memancarkan cahaya sendiri ---
     GLfloat mat_no_emission[] = {0.0f, 0.0f, 0.0f, 1.0f};
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_no_emission);

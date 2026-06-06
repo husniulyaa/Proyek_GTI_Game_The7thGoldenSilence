@@ -1,6 +1,5 @@
 #include "lighting.h"
 
- 
 // VARIABEL PENCAHAYAAN
 const GLfloat light0_ambient[]  = {0.045f, 0.058f, 0.049f, 1.0f};
 const GLfloat light0_diffuse[]  = {0.635f, 0.482f, 0.361f, 1.0f};
@@ -28,8 +27,7 @@ const GLfloat spot_direction[] = {0.0f, -1.0f, 0.3f};
 
  
 // FUNGSI SETUP PENCAHAYAAN
-void lighting()
-{
+void lighting(){
     glEnable(GL_DEPTH_TEST); glDepthFunc(GL_LESS);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
@@ -77,14 +75,11 @@ void lighting()
     glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
 }
 
- 
 // FUNGSI INISIALISASI OPENGL
-void init()
-{
+void init(){
     glEnable(GL_DEPTH_TEST);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glClearColor(0.172f, 0.224f, 0.188f, 1.0f);
-
     glEnable(GL_COLOR_MATERIAL);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
     glEnable(GL_TEXTURE_2D);

@@ -5,14 +5,12 @@
 using namespace std;
 
 Image::Image(char* ps, int w, int h) : pixels(ps), width(w), height(h) {}
-
 Image::~Image(){
     delete[] pixels;
 }
 
 namespace {
-    int toInt(const char* bytes)
-    {
+    int toInt(const char* bytes){
         return (int)(
             ((unsigned char)bytes[3] << 24) |
             ((unsigned char)bytes[2] << 16) |
@@ -21,23 +19,20 @@ namespace {
         );
     }
 
-    short toShort(const char* bytes)
-    {
+    short toShort(const char* bytes){
         return (short)(
             ((unsigned char)bytes[1] << 8) |
             (unsigned char)bytes[0]
         );
     }
 
-    int readInt(ifstream& input)
-    {
+    int readInt(ifstream& input){
         char buffer[4];
         input.read(buffer, 4);
         return toInt(buffer);
     }
 
-    short readShort(ifstream& input)
-    {
+    short readShort(ifstream& input){
         char buffer[2];
         input.read(buffer, 2);
         return toShort(buffer);
@@ -52,32 +47,27 @@ namespace {
     public:
         explicit auto_array(T* array = 0) : array(array), isReleased(false) {}
 
-        auto_array(const auto_array<T>& aarray)
-        {
+        auto_array(const auto_array<T>& aarray){
             array = aarray.array;
             isReleased = aarray.isReleased;
             aarray.isReleased = true;
         }
 
-        ~auto_array()
-        {
+        ~auto_array(){
             if (!isReleased && array != 0) {
                 delete[] array;
             }
         }
 
-        T* get() const
-        {
+        T* get() const{
             return array;
         }
 
-        T& operator*() const
-        {
+        T& operator*() const{
             return *array;
         }
 
-        void operator=(const auto_array<T>& aarray)
-        {
+        void operator=(const auto_array<T>& aarray){
             if (!isReleased && array != 0) {
                 delete[] array;
             }
@@ -87,19 +77,16 @@ namespace {
             aarray.isReleased = true;
         }
 
-        T* operator->() const
-        {
+        T* operator->() const{
             return array;
         }
 
-        T* release()
-        {
+        T* release(){
             isReleased = true;
             return array;
         }
 
-        void reset(T* newArray = 0)
-        {
+        void reset(T* newArray = 0){
             if (!isReleased && array != 0) {
                 delete[] array;
             }
@@ -108,20 +95,17 @@ namespace {
             isReleased = false;
         }
 
-        T* operator+(int i)
-        {
+        T* operator+(int i){
             return array + i;
         }
 
-        T& operator[](int i)
-        {
+        T& operator[](int i){
             return array[i];
         }
     };
 }
 
-Image* loadBMP(const char* filename)
-{
+Image* loadBMP(const char* filename){
     ifstream input;
     input.open(filename, ifstream::binary);
     assert(!input.fail() || !"File tidak ditemukan!!!");
@@ -131,10 +115,9 @@ Image* loadBMP(const char* filename)
     assert((buffer[0] == 'B' && buffer[1] == 'M') || !"Bukan file bitmap!!!");
 
     input.ignore(8);
-
+    
     int dataOffset = readInt(input);
     int headerSize = readInt(input);
-
     int width = 0;
     int height = 0;
     int bitsPerPixel = 0;
@@ -172,10 +155,8 @@ Image* loadBMP(const char* filename)
     int size = bytesPerRow * absHeight;
 
     auto_array<char> pixels(new char[size]);
-
     input.seekg(dataOffset, ios_base::beg);
     input.read(pixels.get(), size);
-
     auto_array<char> pixels2(new char[width * absHeight * 3]);
 
     for (int row = 0; row < absHeight; row++) {
@@ -193,6 +174,5 @@ Image* loadBMP(const char* filename)
     }
 
     input.close();
-
     return new Image(pixels2.release(), width, absHeight);
 }
