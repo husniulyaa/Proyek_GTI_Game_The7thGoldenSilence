@@ -405,14 +405,6 @@ void pressKey(int key, int mx, int my){
         case GLUT_KEY_DOWN:
             deltaPitch = -0.003f;
             break;
-
-        case GLUT_KEY_PAGE_UP:
-            deltaPitch = 0.003f;
-            break;
-
-        case GLUT_KEY_PAGE_DOWN:
-            deltaPitch = -0.003f;
-            break;
     }
 }
 
