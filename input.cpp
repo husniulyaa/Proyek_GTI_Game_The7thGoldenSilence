@@ -13,8 +13,7 @@
 static int lastMouseX = -1;
 static int lastMouseY = -1;
 
-static void updateView()
-{
+static void updateView(){
     orientMe(angle);
     glutPostRedisplay();
 }
@@ -68,13 +67,11 @@ void applyCameraView()
     }
 }
 
-const char* getPOVName()
-{
+const char* getPOVName(){
     return (cameraPOV == 0) ? "First Person" : "Third Person";
 }
 
-void orientMe(float ang)
-{
+void orientMe(float ang){
     if (pitchAngle > PITCH_LIMIT) pitchAngle = PITCH_LIMIT;
     if (pitchAngle < -PITCH_LIMIT) pitchAngle = -PITCH_LIMIT;
 
@@ -85,8 +82,7 @@ void orientMe(float ang)
     applyCameraView();
 }
 
-void moveMeFlat(int i)
-{
+void moveMeFlat(int i){
     xCurr = x + i * lx * 0.03f;
     zCurr = z + i * lz * 0.03f;
 
@@ -101,8 +97,7 @@ void moveMeFlat(int i)
 }
 
 // CALLBACK RESHAPE
-void Reshape(int w1, int h1)
-{
+void Reshape(int w1, int h1){
     if (h1 == 0) h1 = 1;
 
     w = w1;
@@ -121,8 +116,7 @@ void Reshape(int w1, int h1)
 }
 
 // CALLBACK TIMER
-void timer(int value)
-{
+void timer(int value){
     if (gameState == STATE_MENU) {
         glutTimerFunc(1000, timer, 0);
     }
@@ -144,8 +138,7 @@ void timer(int value)
 }
 
 // RESET GAME
-void resetGame()
-{
+void resetGame(){
     timeLeft = 360;
     livesLeft = 3;
     isGameOver = false;
@@ -190,8 +183,7 @@ void resetGame()
 }
 
 // KEYBOARD
-void typeKey(unsigned char key, int mx, int my)
-{
+void typeKey(unsigned char key, int mx, int my){
     if (gameState == STATE_MENU) {
         if (key == 13 || key == ' ') {
             startGameFromMenu();
@@ -352,8 +344,7 @@ void typeKey(unsigned char key, int mx, int my)
     glutPostRedisplay();
 }
 
-void releaseNormalKey(unsigned char key, int mx, int my)
-{
+void releaseNormalKey(unsigned char key, int mx, int my){
     if (key == 'a' || key == 'A' || key == 'd' || key == 'D') {
         deltaAngle = 0.0f;
     }
@@ -363,8 +354,7 @@ void releaseNormalKey(unsigned char key, int mx, int my)
     }
 }
 
-void mouseButton(int button, int state, int mx, int my)
-{
+void mouseButton(int button, int state, int mx, int my){
     if (gameState == STATE_PLAYING && button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         int myGL = h - my;
 
@@ -391,8 +381,7 @@ void mouseButton(int button, int state, int mx, int my)
     }
 }
 
-void pressKey(int key, int mx, int my)
-{
+void pressKey(int key, int mx, int my){
     if (gameState == STATE_MENU) {
         if (key == GLUT_KEY_F1) {
             startGameFromMenu();
@@ -427,8 +416,7 @@ void pressKey(int key, int mx, int my)
     }
 }
 
-void releaseKey(int key, int mx, int my)
-{
+void releaseKey(int key, int mx, int my){
     switch (key) {
         case GLUT_KEY_LEFT:
         case GLUT_KEY_RIGHT:
@@ -437,15 +425,12 @@ void releaseKey(int key, int mx, int my)
 
         case GLUT_KEY_UP:
         case GLUT_KEY_DOWN:
-        case GLUT_KEY_PAGE_UP:
-        case GLUT_KEY_PAGE_DOWN:
             deltaPitch = 0.0f;
             break;
     }
 }
 
-void mouseLook(int mx, int my)
-{
+void mouseLook(int mx, int my){
     if (gameState != STATE_PLAYING || activePuzzle != 0 || isGameOver || isGameWon) {
         lastMouseX = mx;
         lastMouseY = my;
@@ -460,10 +445,8 @@ void mouseLook(int mx, int my)
 
     int dx = mx - lastMouseX;
     int dy = my - lastMouseY;
-
     lastMouseX = mx;
     lastMouseY = my;
-
     angle += dx * MOUSE_SENSITIVITY;
     pitchAngle -= dy * MOUSE_SENSITIVITY;
 

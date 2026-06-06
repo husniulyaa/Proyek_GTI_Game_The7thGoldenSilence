@@ -5,9 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// ==========================================
 // HELPER: LINGKARAN
-// ==========================================
 void Circle(float radius, float r, float g, float b, int t)
 {
     glColor3f(r, g, b);
@@ -21,9 +19,7 @@ void Circle(float radius, float r, float g, float b, int t)
     glEnd();
 }
 
-// ==========================================
 // HELPER: TEKS 3D
-// ==========================================
 void drawText3D(const char* text, float tx, float ty, float tz, float scale)
 {
     glPushMatrix();
@@ -36,9 +32,7 @@ void drawText3D(const char* text, float tx, float ty, float tz, float scale)
     glPopMatrix();
 }
 
-// ==========================================
 // HELPER: TEKS 2D
-// ==========================================
 void drawText2D(float sx, float sy, const char* text, float r, float g, float b)
 {
     glColor3f(r, g, b);
@@ -47,9 +41,7 @@ void drawText2D(float sx, float sy, const char* text, float r, float g, float b)
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
 }
 
-// ==========================================
 // HELPER: KOTAK INPUT
-// ==========================================
 void drawAnswerBox(float bx, float by, float bz,
                    int puzzleIdx, bool isActive, bool isDone)
 {
@@ -77,9 +69,7 @@ void drawAnswerBox(float bx, float by, float bz,
     }
 }
 
-// ==========================================
 // JAM ANALOG
-// ==========================================
 void drawAnalogClock(float totalTimeSecs, float timeRemainingSecs)
 {
     glPushMatrix();
